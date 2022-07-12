@@ -1,0 +1,18 @@
+{
+  "user": [
+    {
+      "id": 1,
+      "name": "Anasse",
+      "address": "lot dhaini n9",
+      "email": "Anassedemnati@gmail.com",
+      "contact": "0632089439"
+    },
+    {
+      "id": 3,
+      "name": "MEHDI",
+      "address": "lot dhaini n9",
+      "email": "MEHDI@gmail.com",
+      "contact": "0632089439"
+    }
+  ]
+}
