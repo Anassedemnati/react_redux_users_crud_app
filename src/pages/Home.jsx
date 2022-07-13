@@ -8,8 +8,6 @@ const Home = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const data = useSelector(state=>state.data)
-    console.log("data : "+data)
-    console.log(data)
     const {users,loading,error} = data;
     
     useEffect(()=>{
@@ -48,14 +46,14 @@ const Home = () => {
                          <tbody>
                             {users&& users.map(user=>(
                               <tr key={user.id}>
-                              <td>{user.id}</td>
+                              <td>{user.name}</td>
                               <td>{user.email}</td>
                               <td>{user.contact}</td>
                               <td>{user.address}</td>
                               <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     <button type="button" className="btn btn-danger ms-2" onClick={()=>deleteUserHandler(user.id)}>Delete</button>
-                                    <button type="button" className="btn btn-warning ms-2">Update</button>
+                                    <button type="button" className="btn btn-warning ms-2" onClick={()=>navigate(`/edituser/${user.id}`)}>Update</button>
                                 </div>
                               </td>
                           </tr>

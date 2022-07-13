@@ -57,6 +57,38 @@ const usersReducer = (state = initialState,action)=>{
                 loading:false,
                 error:action.payload
             }
+        case types.GET_SINGLE_USER_REQUEST:
+            return{
+                ...state,
+                loading:true,
+            }
+        case types.GET_SINGLE_USER_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                user:action.payload
+            }
+        case types.GET_SINGLE_USER_FAIL:
+            return{
+                loading:false,
+                error:action.payload
+            }
+        case types.UPDATE_USER_REQUEST:
+            return{
+                ...state,
+                loading:true,
+            }
+        case types.UPDATE_USER_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                users:state.users.map(user=>user.id===action.payload.id?action.payload:user)
+            }
+        case types.UPDATE_USER_FAIL:
+            return{
+                loading:false,
+                error:action.payload
+            }
         default:
             return state;
             

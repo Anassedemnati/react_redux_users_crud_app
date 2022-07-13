@@ -2,9 +2,9 @@
   "user": [
     {
       "id": 1,
-      "name": "Anasse",
-      "address": "lot dhaini n9",
+      "name": "Anas",
       "email": "Anassedemnati@gmail.com",
+      "address": "lot dhaini n9",
       "contact": "0632089439"
     },
     {
@@ -15,11 +15,18 @@
       "contact": "0632089439"
     },
     {
-      "name": "poupa",
+      "id": 14,
+      "name": "Boutaina",
       "email": "poupa@gmail.com",
       "address": "poupa",
-      "contact": "0634664336",
-      "id": 14
+      "contact": "0634664336"
+    },
+    {
+      "id": 15,
+      "name": "MEHDI zamouri",
+      "email": "MEHDI@gmail.com",
+      "address": "lot dhaini n9",
+      "contact": "0632089439"
     }
   ]
 }
