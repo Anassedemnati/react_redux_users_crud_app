@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
+import { useDispatch } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
+import { addUser } from '../redux/actions';
 
 const AddUser = () => {
     const navigate = useNavigate();
-    
+    const dispatch = useDispatch();
     const [name,setName]= useState('');
     const [email,setEmail]= useState('');
     const [address,setAddress]= useState('');
@@ -13,8 +15,15 @@ const AddUser = () => {
 
 const submitHandler =(e)=>{
     e.preventDefault()
-    console.log("from ")
-    console.log(name,email,address,contact)
+    if(!name||!email||!address||!contact){
+        setMessage('Please fill all the fields')
+        return;
+    }
+    dispatch(addUser({name,email,address,contact}))
+    setMessage(null);
+    navigate('/');
+
+    //1H04 video
 }
 
 
@@ -28,24 +37,26 @@ const submitHandler =(e)=>{
                         <div className="card-body">
                         <form onSubmit={submitHandler}>
                             <div className="form-group mb-3">
-                                <label for="exampleInputEmail1">name</label>
+                                <label >name</label>
                                 <input type="text" className="form-control" id="name" aria-describedby="name" placeholder="Enter name" onChange={(e)=>setName(e.target.value)} value={name}/>
                                
                             </div>
                             <div className="form-group mb-3">
-                                <label for="address">address</label>
+                                <label >address</label>
                                 <input type="text" className="form-control" id="address" placeholder="address" onChange={(e)=>setAddress(e.target.value)} value={address}/>
                             </div>
                             <div className="form-group mb-3">
-                                <label for="address">email</label>
+                                <label>email</label>
                                 <input type="email" className="form-control" id="email" placeholder="email@exmple.com" onChange={(e)=>setEmail(e.target.value)} value={email}/>
                             </div>
                             <div className="form-group mb-3">
-                                <label for="contact">contact</label>
+                                <label >contact</label>
                                 <input type="text" className="form-control" id="contact" placeholder="contact" onChange={(e)=>setContact(e.target.value)} value={contact}/>
                             </div>
+                            {message &&
+                             <div className="alert alert-danger">{message}</div>}
+                             <button type="submit"  className="btn btn-primary">Add</button>
                             
-                            <button type="submit" className="btn btn-primary">Add</button>
                             </form>
                             
                         </div>

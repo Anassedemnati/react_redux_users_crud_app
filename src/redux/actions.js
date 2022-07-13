@@ -52,3 +52,27 @@ export const  deleteUser = (id)=> async (dispatch)=>{
     
 
 }
+
+export const  addUser = (user)=> async (dispatch)=>{
+
+    try {
+       dispatch({
+        type:types.ADD_USER_REQUEST
+       })
+            const res = await axios.post('http://localhost:5000/user',user)
+        dispatch({
+            type:types.ADD_USER_SUCCESS,
+            payload:res.data
+        })
+       
+        
+    } catch (error) {
+        dispatch({
+            type:types.ADD_USER_FAIL,
+            payload: error.response && error.response.data.message
+            ?error.response.data.message
+            :error.message
+        })
+        console.error(error)
+    }
+}
