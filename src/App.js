@@ -6,6 +6,7 @@ import AddUser from './pages/AddUser';
 import EditUser from './pages/EditUser';
 import Students from './pages/Students';
 import AddStudent from './pages/AddStudent';
+import EditStudent from './pages/EditStudent';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
       <Route path='/edituser/:id' element={<EditUser/>}/>
       <Route path='/students' element={<Students/>}/>
       <Route path='/students/addstudent' element={<AddStudent/>}/>
+      <Route path='/students/editstudent/:id' element={<EditStudent/>}/>
       
      </Routes>
     </div>

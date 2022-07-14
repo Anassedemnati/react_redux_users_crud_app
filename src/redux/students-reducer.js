@@ -40,6 +40,54 @@ const studentsReducer = (state = initialState,action)=>{
                 loading:false,
                 error:action.payload
             }
+        case types.ADD_STUDENT_REQUEST:
+            return{
+                ...state,
+                loading:true,
+            }
+        case types.ADD_STUDENT_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                students:[...state.students,action.payload]
+            }
+        case types.ADD_STUDENT_FAIL:
+            return{
+                loading:false,
+                error:action.payload
+            }
+        case types.GET_SINGLE_STUDENT_REQUEST:
+            return{
+                ...state,
+                loading:true,
+            }
+        case types.GET_SINGLE_STUDENT_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                student:action.payload
+            }
+        case types.GET_SINGLE_STUDENT_FAIL:
+            return{
+                loading:false,
+                error:action.payload
+            }
+        case types.UPDATE_STUDENT_REQUEST:
+            return{
+                ...state,
+                loading:true,
+            }
+        case types.UPDATE_STUDENT_SUCCESS:
+            return{
+                ...state,
+                loading:false,
+                students:state.students.map(student=>student.id===action.payload.id?action.payload:student)
+            }
+        case types.UPDATE_STUDENT_FAIL:
+            return{
+                loading:false,
+                error:action.payload
+            }
 
 
         default:

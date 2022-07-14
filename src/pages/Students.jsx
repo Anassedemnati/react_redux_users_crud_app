@@ -54,7 +54,7 @@ const Students = () => {
                               <td>
                                 <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                     <button type="button" className="btn btn-danger ms-2" onClick={()=>deletestudentHandler(student.id)}>Delete</button>
-                                    <button type="button" className="btn btn-warning ms-2" onClick={()=>navigate(`/editstudent/${student.id}`)}>Update</button>
+                                    <button type="button" className="btn btn-warning ms-2" onClick={()=>navigate(`/students/editstudent/${student.id}`)}>Update</button>
                                 </div>
                               </td>
                           </tr>

@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { addStudent } from '../redux/students-actions';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getSingleStudent, updateStudent } from '../redux/students-actions';
 
-const AddStudent = () => {
+const EditStudent = () => {
+    
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [name,setName]= useState('');
@@ -12,25 +13,41 @@ const AddStudent = () => {
     const [isGraduated,setIsGraduated]= useState(false);
 
     const [message,setMessage] = useState(null);
+    const {id}=useParams();
+    const {student,loading,error} = useSelector(state => state.studentData);
+    
+    useEffect(()=>{
+        dispatch(getSingleStudent(id))
+    },[dispatch,id])
+    useEffect(()=>{
+        if(student){
+            setName(student.name)
+            setGender(student.gender)
+            setAge(student.age)
+            setIsGraduated(student.isGraduated)
+        }
+    },[student])
     const submitHandler =(e)=>{
         e.preventDefault()
        if (!name||!gender||!age) {
         setMessage('Please fill all the fields')
         return;
        }
-       dispatch(addStudent({name,gender,courses:[],age,isGraduated}))
-       navigate('/students');
+       dispatch(updateStudent({id,name,gender,courses:[],age,isGraduated}))
+      navigate('/students');
     
     }
+
+
   return (
-    <>
-         <div className="container">
-             <div className="row">
-                    <div className="col-sm">
-                    <div className="card col-md-6 mt-3 offset-3">
-                        <div className="card-header">New User</div>
-                        <div className="card-body">
-                        <form onSubmit={submitHandler}>
+    <div>
+        <div className="container">
+            <div className="row">
+                     <div className="col-sm">
+                            <div className="card col-md-6 mt-3 offset-3">
+                            <div className="card-header">Edit Student</div>
+                            <div className="card-body">
+                            <form onSubmit={submitHandler}>
                             <div className="form-group">
                                 <label >name</label>
                                 <input type="text" 
@@ -77,15 +94,14 @@ const AddStudent = () => {
                             </div>
 
                             </form>
+                            </div>
                         </div>
-                        </div>
-                    </div>
+                   </div>
                 </div>
             </div>
-        
 
-    </>
+    </div>
   )
 }
 
-export default AddStudent
+export default EditStudent
