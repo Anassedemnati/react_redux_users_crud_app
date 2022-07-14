@@ -7,9 +7,8 @@ import {useNavigate} from 'react-router-dom'
 const Home = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const data = useSelector(state=>state.data)
-    const {users,loading,error} = data;
-    
+    const {users,loading,error} = useSelector(state=>state.data)
+ 
     useEffect(()=>{
             dispatch(loadUsers())
     },[dispatch])
@@ -18,7 +17,7 @@ const Home = () => {
         console.log(id)
             if (window.confirm('are you sure to delete user ?')) {
                 dispatch(deleteUser(id))
-                dispatch(loadUsers())
+                
             }
            
         

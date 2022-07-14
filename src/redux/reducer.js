@@ -34,7 +34,7 @@ const usersReducer = (state = initialState,action)=>{
             return{
                 ...state,
                 loading:false,
-                users:state.users.filter(user=>user.id!==action.payload.id)
+                users:state.users.filter(user=>user.id!==action.payload)
             }
         case types.DELETE_USER_FAIL:
             return{
